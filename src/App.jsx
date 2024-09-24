@@ -23,7 +23,7 @@ function App() {
 
   }, [starships])
 
-  const renderStarships = starships?.map(starship => <Card starship={starship} />)
+  const renderStarships = starships?.map(starship => <Card key={starship.name} starship={starship} />)
 
   return (
     <main className='container-fluid' >
