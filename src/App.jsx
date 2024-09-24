@@ -15,9 +15,9 @@ function App() {
   const renderStarships = starships?.map(starship => <Card name={starship.name} />)
 
   return (
-    <main >
+    <main className='container-fluid' >
       <nav>Star Wars Starships</nav>
-      <div className='row gap-4 mt-5'>
+      <div className='row justify-content-center gap-4 mt-5'>
         {renderStarships}
       </div>
     </main>
