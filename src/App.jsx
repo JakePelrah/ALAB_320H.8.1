@@ -8,11 +8,22 @@ function App() {
 
   useEffect(() => {
     getAllStartships().then(setStartships)
+
+
   }, [])
 
 
+  useEffect(() => {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    let tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-  const renderStarships = starships?.map(starship => <Card name={starship.name} />)
+    return () => {
+      tooltipList.forEach(tooltip => tooltip.dispose());
+    };
+
+  }, [starships])
+
+  const renderStarships = starships?.map(starship => <Card starship={starship} />)
 
   return (
     <main className='container-fluid' >
@@ -29,11 +40,11 @@ export default App
 
 
 
-function Card({ name }) {
+function Card({ starship }) {
   return (<div className='col'>
-    <div className='card text-center'>
-        {name}
-
+    <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title={`capacity:${parseInt(starship.cargo_capacity).toExponential()} 
+    cost: ${parseInt(starship.cost_in_credits).toExponential()}`} className='card text-center'>
+      {starship.name}
     </div>
   </div>)
 }
