@@ -5,11 +5,8 @@ import './App.css'
 function App() {
   const [starships, setStartships] = useState([])
 
-
   useEffect(() => {
     getAllStartships().then(setStartships)
-
-
   }, [])
 
 
@@ -37,7 +34,6 @@ function App() {
 }
 
 export default App
-
 
 
 function Card({ starship }) {
