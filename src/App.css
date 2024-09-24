@@ -1,8 +1,12 @@
 .card{
-  width: 20em;
+  width: 15em;
+  height: 5em;
   background-color: rgb(24, 43, 66);
   color: white;
+  justify-content: center;
+  font-weight: bold;
 }
+
 
 nav {
   background-color: black;

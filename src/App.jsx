@@ -17,7 +17,7 @@ function App() {
   return (
     <main className='container-fluid' >
       <nav>Star Wars Starships</nav>
-      <div className='row justify-content-center gap-4 mt-5'>
+      <div className='row gap-4 mt-5'>
         {renderStarships}
       </div>
     </main>
@@ -32,9 +32,7 @@ export default App
 function Card({ name }) {
   return (<div className='col'>
     <div className='card text-center'>
-      <div className='card-body'>
         {name}
-      </div>
 
     </div>
   </div>)
