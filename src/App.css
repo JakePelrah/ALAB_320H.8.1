@@ -1,17 +1,40 @@
-.card{
-  width: 15em;
-  height: 5em;
-  background-color: rgb(24, 43, 66);
-  color: white;
-  justify-content: center;
-  font-weight: bold;
+@font-face {
+  font-family: Logo;
+  src: url('./assets/fonts/star_jedi/starjedi/Starjedi.ttf');
 }
 
+:root{
+  --logo-color:#FFE81F;
+  --primary-color:#181818;
+}
+
+body{
+  background-color:var(--primary-color)
+}
 
 nav {
   background-color: black;
-  color: white;
+  color: var(--logo-color);
+  font-family: Logo;
+  font-size: 3em;
   text-align: center;
-  font-weight: bold;
-  font-size: 2em;
+  border-bottom: 1px solid;
+}
+
+.card{
+  width: 25em;
+  height: 14em;
+  background-color: var(--primary-color);
+  color: rgb(255, 255, 255);
+  border: 1px solid var(--logo-color);
+}
+
+.card-body, .card-footer{
+  border: none !important;
+  background-color: #333;
+}
+
+.card-footer{
+  color: gray;
+  cursor: pointer;
 }

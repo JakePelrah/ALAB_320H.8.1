@@ -5,8 +5,10 @@ import './App.css'
 function App() {
   const [starships, setStartships] = useState([])
 
+
   useEffect(() => {
     getAllStartships().then(setStartships)
+    getAllStartships().then(console.log)
   }, [])
 
 
@@ -20,15 +22,19 @@ function App() {
 
   }, [starships])
 
+
   const renderStarships = starships?.map(starship => <Card key={starship.name} starship={starship} />)
 
   return (
-    <main className='container-fluid' >
+    <>
       <nav>Star Wars Starships</nav>
-      <div className='row gap-4 mt-5'>
-        {renderStarships}
+      <div className='container'>
+
+        <div className='row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 mt-5'>
+          {renderStarships}
+        </div>
       </div>
-    </main>
+    </>
 
   )
 }
@@ -37,10 +43,25 @@ export default App
 
 
 function Card({ starship }) {
-  return (<div className='col'>
-    <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title={`capacity:${parseInt(starship.cargo_capacity).toExponential()} 
-    cost: ${parseInt(starship.cost_in_credits).toExponential()}`} className='card text-center'>
-      {starship.name}
-    </div>
-  </div>)
+  return (
+    <div className='col mb-5'>
+
+      <div className='card'>
+        <div className='card-header'>
+          <h5 class="card-title">
+            {starship.name}
+          </h5>
+        </div>
+        <div className='card-body'>
+          <div>Cost: {parseFloat(starship.cost_in_credits).toLocaleString()} </div>
+          <div>Crew: {starship.crew} </div>
+          <div>Passengers: {starship.passengers} </div>
+
+        </div>
+
+        <div className='card-footer'>
+          <div className='fw-bold' data-bs-toggle="tooltip" data-bs-placement="bottom" title="Manufacturer">{starship.manufacturer} </div>
+        </div>
+      </div>
+    </div >)
 }
