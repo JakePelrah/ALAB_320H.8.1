@@ -24,11 +24,9 @@ function App() {
   }, [starships])
 
   function openLighbox(name) {
-
     const modalImage = modalRef.current._element.querySelector('#modal-image')
     modalImage.src = `/images/${name}.webp`
     modalRef.current.show()
-
   }
 
   const renderStarships = starships?.map(starship => <Card key={starship.name} starship={starship} openLighbox={openLighbox} />)
@@ -38,7 +36,7 @@ function App() {
       <nav>Star Wars Starships</nav>
       <div className='container'>
 
-        <div className='row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 mt-5'>
+        <div className='row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 mt-5 pt-4'>
           {renderStarships}
         </div>
       </div>
@@ -75,8 +73,8 @@ function Card({ starship, openLighbox }) {
             {starship.name}
           </h5>
         </div>
-        <div className='card-img-div'>
-          <img src={`/images/${starship.name}.webp`} className="card-img-top" />
+        <div className='card-img-div' >
+          <img src={`/images/${starship.name}.webp`} className="card-img-top"  draggable='false'/>
 
         </div>
 
