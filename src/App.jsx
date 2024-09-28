@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getAllStartships } from './services/sw-api'
 import './App.css'
 
 function App() {
   const [starships, setStartships] = useState([])
+  const modalRef = useRef(null)
 
 
   useEffect(() => {
     getAllStartships().then(setStartships)
-    getAllStartships().then(console.log)
+    modalRef.current = new bootstrap.Modal('#lightbox')
   }, [])
 
 
@@ -22,8 +23,15 @@ function App() {
 
   }, [starships])
 
+  function openLighbox(name) {
 
-  const renderStarships = starships?.map(starship => <Card key={starship.name} starship={starship} />)
+    const modalImage = modalRef.current._element.querySelector('#modal-image')
+    modalImage.src = `/images/${name}.webp`
+    modalRef.current.show()
+
+  }
+
+  const renderStarships = starships?.map(starship => <Card key={starship.name} starship={starship} openLighbox={openLighbox} />)
 
   return (
     <>
@@ -34,6 +42,19 @@ function App() {
           {renderStarships}
         </div>
       </div>
+
+
+      <div id="lightbox" className="modal fade" tabIndex="-1">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+
+            <div className="modal-body">
+              <img id="modal-image" src="" />
+            </div>
+
+          </div>
+        </div>
+      </div>
     </>
 
   )
@@ -42,18 +63,20 @@ function App() {
 export default App
 
 
-function Card({ starship }) {
+function Card({ starship, openLighbox }) {
+
+
   return (
-    <div className='col mb-5'>
+    <div onClick={() => openLighbox(starship.name)} className='col mb-5'>
 
       <div className='card'>
         <div className='card-header'>
-          <h5 class="card-title">
+          <h5 className="card-title">
             {starship.name}
           </h5>
         </div>
         <div className='card-img-div'>
-        <img src={`/images/${starship.name}.webp`} className="card-img-top" />
+          <img src={`/images/${starship.name}.webp`} className="card-img-top" />
 
         </div>
 
