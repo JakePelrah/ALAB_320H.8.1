@@ -52,6 +52,11 @@ function Card({ starship }) {
             {starship.name}
           </h5>
         </div>
+        <div className='card-img-div'>
+        <img src={`/images/${starship.name}.webp`} className="card-img-top" />
+
+        </div>
+
         <div className='card-body'>
           <div>Cost: {parseFloat(starship.cost_in_credits).toLocaleString()} </div>
           <div>Crew: {starship.crew} </div>
