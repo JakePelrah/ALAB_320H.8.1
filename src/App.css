@@ -27,6 +27,8 @@ nav {
   background-color: var(--primary-color);
   color: rgb(255, 255, 255);
   border: 1px solid var(--logo-color);
+  cursor: pointer !important;
+
 }
 
 .card-body, .card-footer{
@@ -36,7 +38,6 @@ nav {
 
 .card-footer{
   color: gray;
-  cursor: pointer;
 }
 
 .card-img-div{
